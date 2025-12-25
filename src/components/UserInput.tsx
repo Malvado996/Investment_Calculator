@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
-type HandleChange = {
-    inputIdentifier: string;
-    newValue: number;
-}
+// type HandleChange = {
+//     inputIdentifier: string;
+//     newValue: number;
+// }
 
 const UserInput: React.FC = () => {
 
@@ -16,6 +16,9 @@ const UserInput: React.FC = () => {
 
     function handleChange(inputIdentifier, newValue) {
         setUserInput(prevUserInput => {
+
+            console.log(prevUserInput);
+
             return {
                 ...prevUserInput,
                 [inputIdentifier]: newValue
@@ -30,6 +33,7 @@ const UserInput: React.FC = () => {
                 <input
                     type="number"
                     required
+                    value={userInput.initialInvestment}
                     onChange={(event) =>
                         handleChange('initialInvestment', event.target.value)
                     }
@@ -37,18 +41,39 @@ const UserInput: React.FC = () => {
             </p>
             <p>
                 <label>Annual Investment</label>
-                <input type="number" required />
+                <input
+                    type="number"
+                    required
+                    value={userInput.annualInvestment}
+                    onChange={(event) =>
+                        handleChange('annualInvestment', event.target.value)
+                    }
+                />
             </p>
         </div>
 
         <div className="input-group">
             <p>
                 <label>Expected Return</label>
-                <input type="number" required />
+                <input
+                    type="number"
+                    required
+                    value={userInput.expectedReturn}
+                    onChange={(event) =>
+                        handleChange('expectedReturn', event.target.value)
+                    }
+                />
             </p>
             <p>
                 <label>Duration</label>
-                <input type="number" required />
+                <input
+                    type="number"
+                    required
+                    value={userInput.duration}
+                    onChange={(event) =>
+                        handleChange('duration', event.target.value)
+                    }
+                />
             </p>
         </div>
     </section>
