@@ -1,20 +1,23 @@
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 
-// type HandleChange = {
-//     inputIdentifier: string;
-//     newValue: number;
-// }
 
 const UserInput: React.FC = () => {
 
-    const [userInput, setUserInput] = useState({
+    type InvestmentInput = {
+        initialInvestment: number,
+        annualInvestment: number,
+        expectedReturn: number,
+        duration: number,
+    }
+
+    const [userInput, setUserInput] = useState<InvestmentInput>({
         initialInvestment: 10000,
         annualInvestment: 1200,
         expectedReturn: 6,
         duration: 10,
     })
 
-    function handleChange(inputIdentifier, newValue) {
+    function handleChange(inputIdentifier: string, newValue: string) {
         setUserInput(prevUserInput => {
 
             console.log(prevUserInput);
@@ -34,7 +37,7 @@ const UserInput: React.FC = () => {
                     type="number"
                     required
                     value={userInput.initialInvestment}
-                    onChange={(event) =>
+                    onChange={(event: ChangeEvent<HTMLInputElement>) =>
                         handleChange('initialInvestment', event.target.value)
                     }
                 />
@@ -45,7 +48,7 @@ const UserInput: React.FC = () => {
                     type="number"
                     required
                     value={userInput.annualInvestment}
-                    onChange={(event) =>
+                    onChange={(event: ChangeEvent<HTMLInputElement>) =>
                         handleChange('annualInvestment', event.target.value)
                     }
                 />
@@ -59,7 +62,7 @@ const UserInput: React.FC = () => {
                     type="number"
                     required
                     value={userInput.expectedReturn}
-                    onChange={(event) =>
+                    onChange={(event: ChangeEvent<HTMLInputElement>) =>
                         handleChange('expectedReturn', event.target.value)
                     }
                 />
@@ -70,7 +73,7 @@ const UserInput: React.FC = () => {
                     type="number"
                     required
                     value={userInput.duration}
-                    onChange={(event) =>
+                    onChange={(event: ChangeEvent<HTMLInputElement>) =>
                         handleChange('duration', event.target.value)
                     }
                 />
@@ -78,3 +81,5 @@ const UserInput: React.FC = () => {
         </div>
     </section>
 }
+
+export default UserInput
