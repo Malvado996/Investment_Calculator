@@ -20,6 +20,8 @@ const App: React.FC = () => {
     duration: 10,
   })
 
+  const inputIsValid = userInput.duration >= 1;
+
   function handleChange(inputIdentifier: keyof InvestmentInput, newValue: string) {
     setUserInput(prevUserInput => {
 
@@ -36,7 +38,8 @@ const App: React.FC = () => {
     <>
       <Header />
       <UserInput userInput={userInput} onChange={handleChange} />
-      <Results input={userInput} />
+      {!inputIsValid && <p className="center">Please enter duration greater than zero</p>}
+      {inputIsValid && <Results input={userInput} />}
     </>
   )
 }
