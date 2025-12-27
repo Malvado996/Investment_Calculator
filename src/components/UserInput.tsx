@@ -1,33 +1,21 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent } from 'react';
+
+type InvestmentInput = {
+    initialInvestment: number;
+    annualInvestment: number;
+    expectedReturn: number;
+    duration: number;
+};
+
+type UserInputProps = {
+    userInput: InvestmentInput;
+    onChange: (identifier: keyof InvestmentInput, value: string) => void;
+}
 
 
-const UserInput: React.FC = () => {
+const UserInput: React.FC<UserInputProps> = ({ userInput, onChange }) => {
 
-    type InvestmentInput = {
-        initialInvestment: number,
-        annualInvestment: number,
-        expectedReturn: number,
-        duration: number,
-    }
 
-    const [userInput, setUserInput] = useState<InvestmentInput>({
-        initialInvestment: 10000,
-        annualInvestment: 1200,
-        expectedReturn: 6,
-        duration: 10,
-    })
-
-    function handleChange(inputIdentifier: string, newValue: string) {
-        setUserInput(prevUserInput => {
-
-            console.log(prevUserInput);
-
-            return {
-                ...prevUserInput,
-                [inputIdentifier]: newValue
-            }
-        })
-    }
 
     return <section id="user-input">
         <div className="input-group">
@@ -38,7 +26,7 @@ const UserInput: React.FC = () => {
                     required
                     value={userInput.initialInvestment}
                     onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                        handleChange('initialInvestment', event.target.value)
+                        onChange('initialInvestment', event.target.value)
                     }
                 />
             </p>
@@ -49,7 +37,7 @@ const UserInput: React.FC = () => {
                     required
                     value={userInput.annualInvestment}
                     onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                        handleChange('annualInvestment', event.target.value)
+                        onChange('annualInvestment', event.target.value)
                     }
                 />
             </p>
@@ -63,7 +51,7 @@ const UserInput: React.FC = () => {
                     required
                     value={userInput.expectedReturn}
                     onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                        handleChange('expectedReturn', event.target.value)
+                        onChange('expectedReturn', event.target.value)
                     }
                 />
             </p>
@@ -74,7 +62,7 @@ const UserInput: React.FC = () => {
                     required
                     value={userInput.duration}
                     onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                        handleChange('duration', event.target.value)
+                        onChange('duration', event.target.value)
                     }
                 />
             </p>
