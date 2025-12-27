@@ -23,7 +23,7 @@ const App: React.FC = () => {
   function handleChange(inputIdentifier: keyof InvestmentInput, newValue: string) {
     setUserInput(prevUserInput => {
 
-      console.log(prevUserInput);
+      // console.log(prevUserInput);
 
       return {
         ...prevUserInput,

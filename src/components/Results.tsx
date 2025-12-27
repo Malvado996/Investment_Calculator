@@ -1,3 +1,5 @@
+import { calculateInvestmentResults } from '../util/investment';
+
 import type { InvestmentInput } from '../App'
 
 type ResultsProps = {
@@ -6,7 +8,12 @@ type ResultsProps = {
 
 const Results: React.FC<ResultsProps> = ({ input }) => {
 
-    console.log(input);
+    // console.log(input);
+
+    const resultsData = calculateInvestmentResults(input);
+
+    console.log(resultsData);
+
     return (
         <section id='results'>
             <h2>Results...</h2>
